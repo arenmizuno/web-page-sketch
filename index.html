@@ -1,90 +1,43 @@
-<!-- style is typically on the top and is for css -->
 <style>
-  /*css comments */
-</style>
-
-
-
-<!-- script is typically on the bottom and is for javascript-->
-
-<script>
-  // java comments
-</script>
-
-<html lang="en-US">
-  <style>
-    ul {
-      list-style-type: none;
-      padding: 0;
+    body {
+      background-color: red;
     }
-
-    li {
-      margin-bottom: 10px;
+    .container {
+      margin: 20px;
+      padding: 20px;
+      background-color: white;
+    }
+    h2 {
+      text-align: center;
+      font-size: 50px;
+    }
+    form {
+      margin-top: 10px;
+    }
+    input[type="text"] {
+      width: 100%;
       padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      margin-bottom: 10px;
+      border: 1px solid;
     }
-
-    .delete {
-      color: red;
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px;
+      border-radius: 5px;
+      background-color: blue;
+      color: white;
       cursor: pointer;
     }
   </style>
-  <body>
-    <h1>To-Do List</h1>
-    <form id="taskForm">
-      <label for="task">Task:</label>
-      <input type="text" id="task" name="task" required>
-      <label for="dueDate">Due Date:</label>
-      <input type="date" id="dueDate" name="dueDate" required>
-      <button type="submit">Add Task</button>
+
+<body>
+  <div class="container">
+    <h2>Set Your Next Goal</h2>
+    <form id="goalForm">
+      <label for="goal">Enter your goal:</label>
+      <input type="text" id="goal" name="goal" placeholder="E.g., Lose 10 pounds in 2 months">
+      <input type="submit" value="Set Goal">
     </form>
-    <ul id="taskList">
-      <!-- Tasks will be added here -->
-    </ul>
-
-    <script>
-      const taskForm = document.getElementById('taskForm');
-      const taskList = document.getElementById('taskList');
-
-      taskForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const taskInput = document.getElementById('task');
-        const dueDateInput = document.getElementById('dueDate');
-
-        const task = taskInput.value;
-        const dueDate = dueDateInput.value;
-
-        if (task.trim() !== '' && dueDate.trim() !== '') {
-          const listItem = document.createElement('li');
-          listItem.innerHTML = `
-                    <span>${task}</span>
-                    <span>${dueDate}</span>
-                    <button class="delete">Delete</button>
-                `;
-          taskList.appendChild(listItem);
-
-          taskInput.value = '';
-          dueDateInput.value = '';
-
-          listItem.querySelector('.delete').addEventListener('click', function() {
-            listItem.remove();
-          });
-        }
-      });
-
-      function compareDates(a, b) {
-        return new Date(a.querySelector('span:last-child').textContent) - new Date(b.querySelector('span:last-child').textContent);
-      }
-
-      setInterval(() => {
-        const items = Array.from(taskList.children);
-        items.sort(compareDates);
-        items.forEach(item => taskList.appendChild(item));
-      }, 1000);
-    </script>
-  </body>
-</html>
+  </div>
+</body>
