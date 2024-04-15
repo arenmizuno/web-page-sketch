@@ -37,9 +37,9 @@
 <!-- use html to make the goal setting thing -->
   <div class="container">
     <h2>Set Your Next Goal</h2>
-    <form>
+    <form id="goal-form">
       <label>Enter your goal:</label>
-      <input type="text" name="goal" placeholder="ex: Run 12 miles">
+      <input type="text" name="goal" id="goal-input" placeholder="ex: Run 12 miles">
       <input type="submit" value="Set Goal">
     </form>
   </div>
@@ -47,4 +47,21 @@
   <audio controls>
   <source src="https://cf-media.sndcdn.com/e1cHnj5ypV9N.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vZTFjSG5qNXlwVjlOLjEyOC5tcDMqIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzEzMjA2NzAzfX19XX0_&Signature=ckSARi3oJmzJWn0GkRaST8-eeD~G1~ooxVvBsAty~dWKQ9AWXzY81KnEdqVCS0RDbBjf7lnrBRyURnCQQeFESwK48j0kEAYJh9uzW-sAZsDja6R6I6wglOaO5QkGd3hoXcO6Z~0cPMrPlQCOpyekuWExr6mLgZqRAwty3okRAhGZnbAWrj5qlCVAKYqaKAPjgkiJIq1u9JuBrV42goQ99btGNQ-0Qp-pIvsCpPUi29QwcBvLjGuhuUZ5e7mbe7XYYDtwsF5aMuiC-oevtby9sL0zurg~~YUIBbfzvbz53z--YVdJGJ6oZ-NvG-ReQ-KhsuB5aBWRW1U5GPiRHvmlNw__&Key-Pair-Id=APKAI6TU7MMXM5DG6EPQ" type="audio/mpeg">
   </audio>
+  <div id="goal-list" class="container">
+  <h2>Goals List</h2>
+  <ul id="goals"></ul>
+  </div>
 </body>
+
+
+
+<script>
+  document.getElementById('goal-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default form submission
+    const goal = document.getElementById('goal-input').value;
+    const listItem = document.createElement('li');
+    listItem.textContent = goal;
+    document.getElementById('goals').appendChild(listItem);
+    document.getElementById('goal-input').value = '';
+  });
+</script>
